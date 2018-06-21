@@ -24,19 +24,36 @@ bot.on('message', (m) => {
     }
     const command = args.shift().toLowerCase();
     switch(command) {
-        case 'game':
+        /*case 'game':
             var fs = require("fs");
             if(fs.exists("./Games/"+args[0]+".js" && m.mentions.length >= 2)) {
                 newData = {'game':args[0], 'players':[m.mentions[0], m.mentions[1]], 'channel':m.channel.id};
                 gameData[channel.id] = newData;
             } else {
                 m.channel.send("Bad Input, no game started.");
-            }
+            }*/
         case 'ping':
             m.channel.send('Pong!')
             break;
         case 'gyulhaptest':
             gyulhap_array = [2,4,6,14,15,17,19,23,24];
+            if(args.length >= 9){
+                for(let x = 0; x < 9; x++) {
+                    if(!isNaN(args[x])) {
+                        gyulhap_array[x] = parseInt(args[x]);
+                    }
+                }
+            }
+            if(args[0] == 'random') {
+                var newEntry = [];
+                while(newEntry.length < 9) {
+                    var x = Math.floor(Math.random() * 27)
+                    if(!newEntry.includes(x)) {
+                        newEntry.push(x);
+                    }
+                }
+                gyulhap_array = newEntry;
+            }
             var game = require("./Games/gyulhap.js");
             m.channel.send("Gyulhap Canvas Test!", {files: [{attachment: game.canvas(gyulhap_array), name: 'gyulhap.png'}]});
             break;

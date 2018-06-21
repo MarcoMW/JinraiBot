@@ -87,7 +87,7 @@ module.exports = {
         return startGame(gameInfo);
     },
     update: function(gameInfo, action, args){
-        
+        return gameInfo;
     },
     canvas: function(structure) {
         return gyulhap_canvas(structure);
