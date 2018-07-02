@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
-const config = require('./config.json');
+const config = require('./src/config.json');
 const { createCanvas } = require('canvas');
 var clear = null;
 
@@ -19,7 +19,7 @@ bot.on('message', (m) => {
     const args = m.content.slice(config.prefix.length).trim().split(/ +/g);
     if(m.channel.id in gameData) {
         data = gameData[channel.id]
-        var game = require("./Games/"+gameData['game']+".js");
+        var game = require("./src/Games/"+gameData['game']+".js");
         //do game stuff
     }
     const command = args.shift().toLowerCase();
@@ -54,11 +54,11 @@ bot.on('message', (m) => {
                 }
                 gyulhap_array = newEntry;
             }
-            var game = require("./Games/gyulhap.js");
+            var game = require("./src/Games/gyulhap.js");
             m.channel.send("Gyulhap Canvas Test!", {files: [{attachment: game.canvas(gyulhap_array), name: 'gyulhap.png'}]});
             break;
         case 'jinrai':
-            m.channel.send("It's Jinrai!", {files: ["./Assets/jinrai.png"]})
+            m.channel.send("It's Jinrai!", {files: ["./src/Assets/jinrai.png"]})
             break;
         case 'timeout':
             clear = setTimeout(timeout, 10000, m.channel);
