@@ -7,3 +7,5 @@ To use, add the following config file:
     "prefix": "!",
     "ownerID": (your id)
 }
+
+Node modules required for install: discord.js, node_canvas, lodash
